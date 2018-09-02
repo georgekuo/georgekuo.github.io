@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>模組(Modules) | Code is not cold.</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="es6,module,export,import" />
+    
+    <meta name="description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
+<meta name="keywords" content="es6,module,export,import">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模組(Modules)">
+<meta property="og:url" content="http://georgekuo.github.io/2018/8/13/module/index.html">
+<meta property="og:site_name" content="Code is not cold.">
+<meta property="og:description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://georgekuo.github.io/2018/8/13/module/es6-banner-module.jpg">
+<meta property="og:updated_time" content="2018-09-02T09:09:26.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模組(Modules)">
+<meta name="twitter:description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
+<meta name="twitter:image" content="http://georgekuo.github.io/2018/8/13/module/es6-banner-module.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-module" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        模組(Modules)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/8/13/module/" class="article-date">
+            <time datetime="2018-08-13T06:13:31.000Z" itemprop="datePublished">2018-08-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/es6/">es6</a>, <a class="tag-link" href="/tags/export/">export</a>, <a class="tag-link" href="/tags/import/">import</a>, <a class="tag-link" href="/tags/module/">module</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>Modules 模組系統是 ES6 的新功能，透過 <code>import</code> 與 <code>export</code> 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports</p>
+<h3 id="預設匯出-Default-export"><a href="#預設匯出-Default-export" class="headerlink" title="預設匯出(Default export)"></a>預設匯出(Default export)</h3><p>Default export 的作用是為模組指定預設輸出。舉個例子，假設我們在 human.js 的檔案裡頭，有一個名為 person 的常數，我們用 <code>export</code> 將其輸出，語法為 <code>export default person</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//human.js</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Max'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> person</span><br></pre></td></tr></table></figure><br>接下來我們想要在其他的 js 檔案，例如 app.js 引入 person 這個常數，只要用 <code>import person from ‘./human.js’</code> 即可，<strong><em>person 可換成任意名稱</em></strong>，因為我們已經在 human.js 指定了常數 person 為預設輸出(export default)，所以我們不管在任何地方，從 human.js 引入的預設值都是常數 person。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">import</span> person <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="keyword">import</span> prs <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="keyword">import</span> xyz <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="comment">//import 後面不管任何名稱，都是引入 human.js 的常數 person</span></span><br></pre></td></tr></table></figure>
+<p>簡而言之，這裡記住兩個重點：</p>
+<ul>
+<li>每一支 JS 檔案只能有一個預設匯出(不然就不叫預設值了)</li>
+<li>export 引入的預設匯出，可以任意命名</li>
+</ul>
+<h3 id="具名匯出-Named-exports"><a href="#具名匯出-Named-exports" class="headerlink" title="具名匯出(Named exports)"></a>具名匯出(Named exports)</h3><p>當你的 JS 有兩個以上的變數要匯出時，這時就要用具名匯出(Named exports)，以下是程式碼：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//utility.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> clean = <span class="function"><span class="params">()</span> =&gt;</span> &#123;...&#125; </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> baseData = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Avengers = [<span class="string">'Ironman'</span>, <span class="string">'Hulk'</span>, <span class="string">'Thor'</span>, <span class="string">'Loki'</span>]</span><br><span class="line"><span class="keyword">export</span> &#123; Avengers &#125;</span><br></pre></td></tr></table></figure>
+<p>這是另一種匯出的方式，一般比較推薦此種寫法，因為這樣在 js 最下方輸出，可一眼看出總共輸出了哪些變數。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> clean = <span class="function"><span class="params">()</span> =&gt;</span> &#123;...&#125; </span><br><span class="line"><span class="keyword">const</span> baseData = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Avengers = [<span class="string">'Ironman'</span>, <span class="string">'Hulk'</span>, <span class="string">'Thor'</span>, <span class="string">'Loki'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; clean, baseData, foo, Avengers &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="匯出別名"><a href="#匯出別名" class="headerlink" title="匯出別名"></a>匯出別名</h3><p>一般情況下，export 輸出的變數就是本來的名字，但你也可以使用 <code>as</code> 關鍵字重新命名。我們也可重複重新命名這個動作。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kick_01</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kick_02</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  kick_01 <span class="keyword">as</span> k1,</span><br><span class="line">  kick_02 <span class="keyword">as</span> k2,</span><br><span class="line">  kick_02 <span class="keyword">as</span> kickkkkkkk  <span class="comment">//重複重新命名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="引入具名匯出須加大括號"><a href="#引入具名匯出須加大括號" class="headerlink" title="引入具名匯出須加大括號"></a>引入具名匯出須加大括號</h3><p>引入具名匯出必須明確指出引入的是哪一個變數，所以名稱必須跟匯出的名稱相同，然後在名稱前後加上花括號 {…}<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; baseData &#125; <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123; clean &#125; <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="匯入別名"><a href="#匯入別名" class="headerlink" title="匯入別名"></a>匯入別名</h3><p>跟匯出別名一樣，你也可以在引入具名匯出後，任意的命名自己想要的名稱，只要使用 as 關鍵字即可</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ironman &#125; <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123; tony <span class="keyword">as</span> ironman &#125;<span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br><span class="line"><span class="comment">//指定一個別名，然後你可以在要導入的文件中自由選擇該別名as關鍵字</span></span><br></pre></td></tr></table></figure>
+<h3 id="同時引入多個輸出"><a href="#同時引入多個輸出" class="headerlink" title="同時引入多個輸出"></a>同時引入多個輸出</h3><p>當檔案中有多個命名輸出，你可使用 <strong>*</strong> 導入所有內容，然後分配別名並進行綁定，在此情況中，它將是一個 object，以便你可使用例如：<code>bundled.baseData</code>, <code>bundled.clean</code> …等方法，即可使用 export 的變數。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> bundled <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="export-與-import-一定要放在頂層範疇"><a href="#export-與-import-一定要放在頂層範疇" class="headerlink" title="export 與 import 一定要放在頂層範疇"></a>export 與 import 一定要放在頂層範疇</h3><p><code>export</code> 與 <code>import</code> 一定得出現在頂層範疇(top-level scope)。舉例來說，你不能將 <code>export</code> 或 <code>import</code> 放在 if 條件式內，它們必須出現在所有區塊與函式之外。</p>
+<p>參考連結:<br><a href="https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview" target="_blank" rel="noopener">React 16 - The Complete Guide</a><br><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="noopener">ECMAScript 6 入门</a><br><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/module_system.html" target="_blank" rel="noopener">從ES6開始的JavaScript學習生活</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/export" target="_blank" rel="noopener">MDN - export</a><br><a href="https://www.jianshu.com/p/edaf43e9384f" target="_blank" rel="noopener">ES6：export default 和 export 区别</a><br><a href="http://www.books.com.tw/products/0010743987" target="_blank" rel="noopener">你所不知道的JS：ES6與未來發展</a><br><a href="http://www.infoq.com/cn/articles/es6-in-depth-modules" target="_blank" rel="noopener">深入浅出ES6（十六）：模块 Modules</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://georgekuo.github.io/2018/8/13/module/" data-id="cjlkn4goc0007y8dh29xuzhpl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/george_kuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/georgekuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/8/15/arrow-function/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            箭頭函式(Arrow Function)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/8/13/Destructuring/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">解構賦值(Destructuring Assignment)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/22/promise/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/22/promise/es6-banner-promise.jpg)" alt="Promise" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/22/promise/" class="title">Promise</a></p>
+                            <p class="item-date"><time datetime="2018-08-22T07:13:17.000Z" itemprop="datePublished">2018-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/20/default-parameters/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/20/default-parameters/es6-banner-default-2.jpg)" alt="預設參數(Default parameters)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/20/default-parameters/" class="title">預設參數(Default parameters)</a></p>
+                            <p class="item-date"><time datetime="2018-08-20T05:57:41.000Z" itemprop="datePublished">2018-08-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/20/es6-class/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/20/es6-class/es6-banner-classes.jpg)" alt="類別(Classes)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/20/es6-class/" class="title">類別(Classes)</a></p>
+                            <p class="item-date"><time datetime="2018-08-20T02:05:32.000Z" itemprop="datePublished">2018-08-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/17/spread-rest-operators/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/17/spread-rest-operators/es6-banner-spread.jpg)" alt="分散 / 其餘(Spread/Rest)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/17/spread-rest-operators/" class="title">分散 / 其餘(Spread/Rest)</a></p>
+                            <p class="item-date"><time datetime="2018-08-17T06:10:27.000Z" itemprop="datePublished">2018-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/15/arrow-function/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/15/arrow-function/es6-banner-arrow.jpg)" alt="箭頭函式(Arrow Function)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/15/arrow-function/" class="title">箭頭函式(Arrow Function)</a></p>
+                            <p class="item-date"><time datetime="2018-08-15T06:24:02.000Z" itemprop="datePublished">2018-08-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/arrow-function/">arrow function</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">class</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/const/">const</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/constructor/">constructor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/default-parameters/">default parameters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/destructuring/">destructuring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/export/">export</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/let/">let</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/module/">module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rest/">rest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spread/">spread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/super/">super</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this/">this</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/arrow-function/" style="font-size: 10px;">arrow function</a> <a href="/tags/class/" style="font-size: 10px;">class</a> <a href="/tags/const/" style="font-size: 10px;">const</a> <a href="/tags/constructor/" style="font-size: 10px;">constructor</a> <a href="/tags/default-parameters/" style="font-size: 10px;">default parameters</a> <a href="/tags/destructuring/" style="font-size: 10px;">destructuring</a> <a href="/tags/es6/" style="font-size: 20px;">es6</a> <a href="/tags/export/" style="font-size: 10px;">export</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/let/" style="font-size: 10px;">let</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rest/" style="font-size: 10px;">rest</a> <a href="/tags/spread/" style="font-size: 10px;">spread</a> <a href="/tags/super/" style="font-size: 10px;">super</a> <a href="/tags/this/" style="font-size: 10px;">this</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 George Kuo</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://georgekuo.github.io/2018/8/13/module/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>react 簡單入門 | Code is not cold.</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="react" />
+    
+    <meta name="description" content="本系列是我學習 React 的心得筆記，主要參考 Udemy 上的 React 線上課程 React 16 - The Complete Guide，並輔以 React官方文件、css88 React中文文件，如有說錯或說不好之處，請各位不吝指教。  什麼是 React?JavaScript library for building user interfaces。 React 官網開宗明義的第">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react 簡單入門">
+<meta property="og:url" content="http://georgekuo.github.io/2018/8/6/react-introduce/index.html">
+<meta property="og:site_name" content="Code is not cold.">
+<meta property="og:description" content="本系列是我學習 React 的心得筆記，主要參考 Udemy 上的 React 線上課程 React 16 - The Complete Guide，並輔以 React官方文件、css88 React中文文件，如有說錯或說不好之處，請各位不吝指教。  什麼是 React?JavaScript library for building user interfaces。 React 官網開宗明義的第">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://georgekuo.github.io/2018/8/6/react-introduce/React@1x.jpg">
+<meta property="og:updated_time" content="2018-09-02T09:09:26.183Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react 簡單入門">
+<meta name="twitter:description" content="本系列是我學習 React 的心得筆記，主要參考 Udemy 上的 React 線上課程 React 16 - The Complete Guide，並輔以 React官方文件、css88 React中文文件，如有說錯或說不好之處，請各位不吝指教。  什麼是 React?JavaScript library for building user interfaces。 React 官網開宗明義的第">
+<meta name="twitter:image" content="http://georgekuo.github.io/2018/8/6/react-introduce/React@1x.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-react-introduce" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        react 簡單入門
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/8/6/react-introduce/" class="article-date">
+            <time datetime="2018-08-06T07:41:22.000Z" itemprop="datePublished">2018-08-06</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/react/">react</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>本系列是我學習 React 的心得筆記，主要參考 Udemy 上的 React 線上課程 <a href="https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview" target="_blank" rel="noopener">React 16 - The Complete Guide</a>，並輔以 <a href="https://reactjs.org/docs/getting-started.html" target="_blank" rel="noopener">React官方文件</a>、<a href="http://react.css88.com/docs/getting-started.html" target="_blank" rel="noopener">css88 React中文文件</a>，如有說錯或說不好之處，請各位不吝指教。</p>
+</blockquote>
+<h2 id="什麼是-React"><a href="#什麼是-React" class="headerlink" title="什麼是 React?"></a>什麼是 React?</h2><p><strong>JavaScript library for building user interfaces。</strong> React 官網開宗明義的第一句話告訴我們，React 是一套用於建構使用者介面的 JavaScript 函式庫。</p>
+<p>由於 React 就是 JavaScript，所以 React 直接在瀏覽器運作，這表示頁面任何的變化會在用戶的瀏覽器即刻產生，不需等伺服器回應，大大提升反應速度。React 使用元件 (以下以 Components 稱呼之) 建構使用者介面，一個網頁的基本架構可拆成數個 Components，我們以一般最普遍的網頁解釋，React 將 header, sidebar, article, footer…等網頁元素都製成 Components，這讓我們在建構網站時，可將相同的 Components 重複利用而不必撰寫重複的程式碼，這讓團隊協作變得更加容易，當網站需要修改時，也只需要從 Components 修改，而不必將整個網站翻來覆去只為了修改一個小地方。 </p>
+<p>你可以將 React Components 視為你的自定義 HTML 元素，撰寫 React 視為撰寫你的自定義 HTML 元素，透過 React，你可撰寫易於維護、方便管理，以及可重複使用的程式碼。</p>
+<h2 id="Hello-world-Hello-React"><a href="#Hello-world-Hello-React" class="headerlink" title="Hello, world! Hello, React!"></a>Hello, world! Hello, React!</h2><p>接下來讓我們開始撰寫第一支 React 程式碼，你可以打開你習慣的文字編輯器 (VSCode, Sublime, Atom…etc)，或是使用 <a href="https://codepen.io/pen?&amp;editors=0010" target="_blank" rel="noopener">Codepen</a>，<a href="https://codesandbox.io/s/" target="_blank" rel="noopener">CodeSandbox</a> 等線上工具，在這裡我們用 Codepen 完成這個範例。</p>
+<p>首先我們先在 HTML 裡輸入以下程式碼：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"person"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Westbrook<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Age: 30<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>接著撰寫 CSS：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.person</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid gray;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> gray;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>你會看到我們已經手刻出一張帶有名字與年齡的小卡。</p>
+<p></p><p data-height="253" data-theme-id="dark" data-slug-hash="mKXjxa" data-default-tab="css,result" data-user="phate" data-pen-title="react introduce-01" class="codepen">See the Pen <a href="https://codepen.io/phate/pen/mKXjxa/" target="_blank" rel="noopener">React demo</a> by phate (<a href="https://codepen.io/phate" target="_blank" rel="noopener">@phate</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>此時如果我們想要在網頁中增加第二張小卡，最直接的方式就是在 HTML 裡複製貼上整段 &lt;div class =”person”&gt;<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"person"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Westbrook<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Age: 30<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"person"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>George<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Age: 28<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>在2018年，讓我們用 React 來解決這問題。</p>
+<p>首先，在 Codepen 的 JS 欄左上方找到一個齒輪，用力的點下去。</p>
+<p><img src="../react-introduce/01.png" style="width:60%;margin:0"></p>
+<p>接著會出現 Codepen 的 JavaScript 設定視窗，在 JavaScript Preprocessor 選擇 Babel，然後在 Add External Scripts/Pens 處，我們在搜尋框打上 react，載入 react.js 與 react-dom.js，接著你就可以在 JS 欄寫 React 了。</p>
+<p><img src="../react-introduce/02.png" style="width:60%;margin:0"></p>
+<p>讓我們開始撰寫 React Component，以便讓我們有一個可重複使用的自定義 HTML 元件，我們先把第一個小卡的 HTML 複製剪下，改成 &lt;div id=”p1”&gt; &lt;/div&gt;<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"p1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"person"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Payton<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Age: 28<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>緊接著，我們在 JS 裡命名一個 Person 的 function，注意函數名稱的<strong><em>第一個字母要大寫</em></strong>，然後把剛剛 HTML 剪下的 &lt;div class =”person”&gt; 貼在 function 的 return 裡，並用小括號包起來，這是 JSX 的語法，JSX 以後會提到，這邊只要先知道 JSX 是一種可以讓HTML標記直接寫在JavaScript程式碼中的擴充語法即可。而因為 class 是 JavaScript 的關鍵字，所以在 JSX 裡，記得把 class 改成 className。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span>(</span><br><span class="line">    &lt;div className=<span class="string">"person"</span>&gt;</span><br><span class="line">      &lt;h2&gt;Westbrook&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;Age: 30&lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>接著我們要在頁面中渲染出我們的 React Component，記得我們在 JS 設定裡有載入一支 React-dom.js 嗎？我們要使用它的 ReactDOM.render() 方法，這讓我們可以將 JavaScript 函數呈現為真實的 DOM，在 ReactDOM.render() 裡頭，第一個參數寫上我們的自定義 HTML 函數 &lt;Person /&gt;，然後第二個參數撰寫 document.querySelector(‘#p1’)，這會讓我們的 Copmonent 渲染在#p1。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Person /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'#p1'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>因為我們是在 #p1 塞入 function Person() 的 JSX ，#p1 預設是 display:block，為了併排，我們另外在 CSS 設定 #p1 的 display 值為 inline-block。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#p1</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接著就可以驗收我們的成果：我們成功的自訂 React Component(function Person) 並且渲染在 #p1。</p>
+<p></p><p data-height="265" data-theme-id="dark" data-slug-hash="XBxEJw" data-default-tab="js,result" data-user="phate" data-pen-title="react introduce - 02" class="codepen">See the Pen <a href="https://codepen.io/phate/pen/XBxEJw/" target="_blank" rel="noopener">react introduce - 02</a> by phate (<a href="https://codepen.io/phate" target="_blank" rel="noopener">@phate</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>剛剛 HTML 的程式碼幾乎原封不動的貼到 JSX 裡，雖然簡化了 HTML，但是對於 JS 來說並沒有簡化到哪去，所以我們現在要把 JSX 裡會變化的參數抽出來，這裡用到 React 一個傳遞參數的功能 props。</p>
+<p>現在我們把 function Person() 放入參數 <code>props</code>，然後把 JSX 的姓名與年齡抽出來，用<code>{props.name}</code> 與 <code>{props.age}</code> 代替。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span>(</span><br><span class="line">    &lt;div className=<span class="string">"person"</span>&gt;</span><br><span class="line">      &lt;h2&gt;&#123;props.name&#125;&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;Age: &#123;props.age&#125;&lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>接著我們將個別的姓名與年齡寫在 ReactDOM.render 的根物件 <code><person></person></code> 裡：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Person name=<span class="string">'Gary'</span> age=<span class="string">'30'</span> /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'#p1'</span>)</span><br><span class="line">)</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Person name=<span class="string">'Payton'</span> age=<span class="string">'28'</span> /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'#p2'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>現在再來看一下我們的成果：</p>
+<p></p><p data-height="300" data-theme-id="494" data-slug-hash="KBGGqX" data-default-tab="js,result" data-user="phate" data-pen-title="react introduce - 03" class="codepen">See the Pen <a href="https://codepen.io/phate/pen/KBGGqX/" target="_blank" rel="noopener">react introduce - 03</a> by phate (<a href="https://codepen.io/phate" target="_blank" rel="noopener">@phate</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>最後，為了避免連續調用兩次 ReactDOM.render，我們宣告一個變數 app 把兩組 &lt;Person &sol;&gt; 放進去，這裡有一個重點，<strong><em>JSX 只接受一個根元素</em></strong>，所以我們必須另外用 div 把兩組 &lt;Person &sol;&gt; 包起來。</p>
+<p>以下程式碼就是我們的最終成果。</p>
+<p></p><p data-height="300" data-theme-id="494" data-slug-hash="djLJZo" data-default-tab="js,result" data-user="phate" data-pen-title="react introduce - 04" class="codepen">See the Pen <a href="https://codepen.io/phate/pen/djLJZo/" target="_blank" rel="noopener">react introduce - 04</a> by phate (<a href="https://codepen.io/phate" target="_blank" rel="noopener">@phate</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+<p>參考連結:<br><a href="https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview" target="_blank" rel="noopener">React 16 - The Complete Guide</a><br><a href="http://blog.turn.tw/?p=3532" target="_blank" rel="noopener">搞懂為何設定 React、JSX、ES2015、Babel、Webpack 的學習筆記</a><br><a href="http://www.runoob.com/react/react-install.html" target="_blank" rel="noopener">RUNOOB.COM - React 安装</a><br><a href="https://eyesofkids.gitbooks.io/react-basic-zh-tw/content/day18_deeper_jsx/" target="_blank" rel="noopener">DOM界的彼方(繁中) - React篇: JSX語法撰寫指引</a><br><a href="https://www.w3cplus.com/react/meet-jsx-again.html" target="_blank" rel="noopener">React 初学者教程7：深入 JSX</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://georgekuo.github.io/2018/8/6/react-introduce/" data-id="cjlkn4gof000ay8dh0t7prya6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/george_kuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/georgekuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/8/8/let-and-const/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            let 和 const
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/22/promise/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/22/promise/es6-banner-promise.jpg)" alt="Promise" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/22/promise/" class="title">Promise</a></p>
+                            <p class="item-date"><time datetime="2018-08-22T07:13:17.000Z" itemprop="datePublished">2018-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/20/default-parameters/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/20/default-parameters/es6-banner-default-2.jpg)" alt="預設參數(Default parameters)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/20/default-parameters/" class="title">預設參數(Default parameters)</a></p>
+                            <p class="item-date"><time datetime="2018-08-20T05:57:41.000Z" itemprop="datePublished">2018-08-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/20/es6-class/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/20/es6-class/es6-banner-classes.jpg)" alt="類別(Classes)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/20/es6-class/" class="title">類別(Classes)</a></p>
+                            <p class="item-date"><time datetime="2018-08-20T02:05:32.000Z" itemprop="datePublished">2018-08-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/17/spread-rest-operators/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/17/spread-rest-operators/es6-banner-spread.jpg)" alt="分散 / 其餘(Spread/Rest)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/17/spread-rest-operators/" class="title">分散 / 其餘(Spread/Rest)</a></p>
+                            <p class="item-date"><time datetime="2018-08-17T06:10:27.000Z" itemprop="datePublished">2018-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/15/arrow-function/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/15/arrow-function/es6-banner-arrow.jpg)" alt="箭頭函式(Arrow Function)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/15/arrow-function/" class="title">箭頭函式(Arrow Function)</a></p>
+                            <p class="item-date"><time datetime="2018-08-15T06:24:02.000Z" itemprop="datePublished">2018-08-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/arrow-function/">arrow function</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">class</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/const/">const</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/constructor/">constructor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/default-parameters/">default parameters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/destructuring/">destructuring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/export/">export</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/let/">let</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/module/">module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rest/">rest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spread/">spread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/super/">super</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this/">this</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/arrow-function/" style="font-size: 10px;">arrow function</a> <a href="/tags/class/" style="font-size: 10px;">class</a> <a href="/tags/const/" style="font-size: 10px;">const</a> <a href="/tags/constructor/" style="font-size: 10px;">constructor</a> <a href="/tags/default-parameters/" style="font-size: 10px;">default parameters</a> <a href="/tags/destructuring/" style="font-size: 10px;">destructuring</a> <a href="/tags/es6/" style="font-size: 20px;">es6</a> <a href="/tags/export/" style="font-size: 10px;">export</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/let/" style="font-size: 10px;">let</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rest/" style="font-size: 10px;">rest</a> <a href="/tags/spread/" style="font-size: 10px;">spread</a> <a href="/tags/super/" style="font-size: 10px;">super</a> <a href="/tags/this/" style="font-size: 10px;">this</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 George Kuo</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://georgekuo.github.io/2018/8/6/react-introduce/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

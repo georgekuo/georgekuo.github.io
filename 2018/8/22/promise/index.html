@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Promise | Code is not cold.</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="es6,promise" />
+    
+    <meta name="description" content="JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。 甚麼是 Prom">
+<meta name="keywords" content="es6,promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="http://georgekuo.github.io/2018/8/22/promise/index.html">
+<meta property="og:site_name" content="Code is not cold.">
+<meta property="og:description" content="JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。 甚麼是 Prom">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://georgekuo.github.io/2018/8/22/promise/es6-banner-promise.jpg">
+<meta property="og:updated_time" content="2018-09-02T09:09:26.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise">
+<meta name="twitter:description" content="JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。 甚麼是 Prom">
+<meta name="twitter:image" content="http://georgekuo.github.io/2018/8/22/promise/es6-banner-promise.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-promise" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Promise
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/8/22/promise/" class="article-date">
+            <time datetime="2018-08-22T07:13:17.000Z" itemprop="datePublished">2018-08-22</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/es6/">es6</a>, <a class="tag-link" href="/tags/promise/">promise</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。</p>
+<p>甚麼是 Promise? </p>
+<p>首先要知道，<strong>Promise 是一個物件(object)</strong>，它代表一個即將完成、或失敗的非同步操作，以及它所產生的值。一個 Promise 物件透過 new 及其建構式建立。這個建構式接收一個叫作”執行器函式（executor function）”的引數。此函式裡面有兩個 callback function 作為引數，分別是 <strong>resolve</strong> 與 <strong>reject</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="comment">/* executor */</span> <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; ... &#125; );</span><br></pre></td></tr></table></figure>
+<h4 id="resolve-與-reject-函數的作用"><a href="#resolve-與-reject-函數的作用" class="headerlink" title="resolve 與 reject 函數的作用"></a>resolve 與 reject 函數的作用</h4><p>任何一個 Promise 物件在剛被建立時，一定都是處於 pending 狀態，只有執行完裡面的非同步程式後，才能確認該 Promise 是成功或失敗。</p>
+<p>如果該 Promise 的非同步程式<strong>成功</strong>完成時，將會執行第一個函式 resolve 之結果值，相對的，若非同步程式<strong>失敗</strong>時，Promise 將會執行第二個函式 reject 之結果值。簡單的說，即是把這兩個 callback function 當作該 Promise 成功或失敗的接口。</p>
+<p><strong>成功</strong>便調用<strong>第一個</strong>回呼函數 resolve，將參數傳遞出去。<br><strong>失敗</strong>便調用<strong>第二個</strong>回呼函數 reject，將參數傳遞出去。 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  resolve(value)  <span class="comment">// 成功便執行 resolve 的 value 值</span></span><br><span class="line">  reject(reason)  <span class="comment">// 失敗便執行 reject 的 reason 值</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="resolve-與-reject-可任意命名"><a href="#resolve-與-reject-可任意命名" class="headerlink" title="resolve 與 reject 可任意命名"></a>resolve 與 reject 可任意命名</h3><p>Executor 裡面的 callback function（resolve 與 reject）可用其他名稱代替。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">successed, failed</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  successed(value)  <span class="comment">// 成功便執行 successed 的 value 值</span></span><br><span class="line">  failed(reason)    <span class="comment">// 失敗便執行 failed 的 reason 值</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="第二個-reject-函式不一定要放"><a href="#第二個-reject-函式不一定要放" class="headerlink" title="第二個 reject 函式不一定要放"></a>第二個 reject 函式不一定要放</h3><p>resolve 或 reject 函式不必兩個都放，如果你確定你的 Promise 裡面的程式一定會執行成功，可以只放第一個 callback function，也就是 resolve。如果你的 Promise 可能有失敗結果，就不能偷懶，一定要放兩個 callback function，第一個 callback function 是成功時執行，第二個 callback function 是失敗時執行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">reject</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  reject(value)  <span class="comment">// 成功便執行 reject 的 value 值</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>上面有個小小的陷阱，在 executor 裡面我放了一個叫 reject 的 callback function，雖然它叫 reject，但它其實是<strong>成功時才會執行</strong>，因為這裡綜合了以上所提到的兩個特性：</p>
+<ul>
+<li>resolve 與 reject 可任意命名</li>
+<li>第二個 reject 函式不一定要放</li>
+</ul>
+<p>因為 executor 裡面只有一個 callback functoin，所以它其實代表的是 Promise 成功時才會執行的接口，也就是一般所認知的 resolve 函式。</p>
+<h4 id="then"><a href="#then" class="headerlink" title="then()"></a>then()</h4><p><code>then()</code>方法回傳一個 Promise 物件。它接收兩個引數： Promise 在成功及失敗情況時的 callback function。</p>
+<p><code>then()</code>第一個 callback function 是 Promise 對象的狀態變為 resolved 時調用，第二個 callback function 是 Promise 對象的狀態變為 rejected 時調用，其中第二個 callback function 是可選的，不一定要提供。這兩個函數都接受 Promise 對象傳出的值作為參數。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  resolve(value)  </span><br><span class="line">  reject(reason)  </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">myPromise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// myPromise 狀態為成功時，執行此處程式碼</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// myPromise 狀態為失敗時，執行此處程式碼</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="then-串連"><a href="#then-串連" class="headerlink" title="then() 串連"></a>then() 串連</h3><p>還記得我們使用 Promise 的初衷嗎？</p>
+<p>為了讓非同步程式以同步程式操作的流程進行，我們使用 then 方法，依序呼叫兩個以上的非同步函數，而每個 then 方法回傳一個 Promise 以進行方法串接（method chaining），我們稱之為建立 Promise 鏈。 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">myPromise.then(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> json.post;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="catch"><a href="#catch" class="headerlink" title="catch()"></a>catch()</h3><p>catch 與 then 用法相反，它接收 Promise 失敗時的 reject 函式，一般放在 Promise 鏈的最後。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  resolve(value)  </span><br><span class="line">  reject(reason)  </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">myPromise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// myPromise 狀態為成功時，執行此處程式碼</span></span><br><span class="line">&#125;.catch(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// myPromise 狀態為失敗時，執行此處程式碼</span></span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure></p>
+<h3 id="用-catch-定義-reject，別用-then-的第二個-callback-function"><a href="#用-catch-定義-reject，別用-then-的第二個-callback-function" class="headerlink" title="用 catch 定義 reject，別用 then 的第二個 callback function"></a>用 catch 定義 reject，別用 then 的第二個 callback function</h3><p>一般來說，盡量不要在 then 方法裡面定義 Reject 狀態的 callback function（即 then 的第二個參數），建議使用 catch 方法。<br><!-- http://liubin.org/promises-book/#then-or-catch --></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line">promise</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// success</span></span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// error</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line">promise</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; <span class="comment">//cb</span></span><br><span class="line">    <span class="comment">// success</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// error</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>接下來讓我們來實作一個簡單的 promise 範例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logWord</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(word)</span><br><span class="line">  &#125;, <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allWord</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  logWord(<span class="string">'a'</span>)</span><br><span class="line">  logWord(<span class="string">'b'</span>)</span><br><span class="line">  logWord(<span class="string">'c'</span>)</span><br><span class="line">&#125;</span><br><span class="line">allWord();</span><br></pre></td></tr></table></figure>
+<p>function logWord 是一個 setTimeout 程式，會 <strong>不定時</strong> console 出我們自定的參數，當我們用一個函式 allWord() 把數個 logWord() 包起來，執行時會發現裡面的 logWord 是隨機觸發的，原因是因為<code>Math.floor(Math.random() * 1000)</code>。</p>
+<p>但你想要 allWord() 裡面的 logWord() 是依序執行出 a b c，而不是隨機 b c a 或 c a b 時，我們會怎麼做？以前的做法是使用 callback 函式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logWord</span>(<span class="params">word, cb</span>)</span>&#123;  <span class="comment">//插入 callback</span></span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(word)</span><br><span class="line">    cb();  <span class="comment">//在主程式最後一行執行</span></span><br><span class="line">  &#125;, <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allWord</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  logWord(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//放入第1個 callback</span></span><br><span class="line">    logWord(<span class="string">'b'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//放入第2個 callback</span></span><br><span class="line">      logWord(<span class="string">'c'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)  <span class="comment">//第3個 callback 裡面是空的，因為已沒有其他需要做的事</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">allWord();</span><br></pre></td></tr></table></figure>
+<p>在 logWord() 插入一個 callback 參數(這裡取名為 cb) ，然後在 setTimeout 主程式的最後一行執行它。</p>
+<p>接著執行以下動作:</p>
+<ol>
+<li>在 allWord() 裡，將第一個執行的 logWord(‘a’) 插入 callback 當作第二個參數</li>
+<li>把 logWord(‘b’) 放在 logWord(‘a’)的 callback，確保會在 console 出 a 才會執行 logWord(‘b’)</li>
+<li>把 logWord(‘c’) 放在 logWord(‘b’)的 callback，確保會在 console 出 a 才會執行 logWord(‘c’)</li>
+<li>logWord(‘c’) callback fuction 為空值，因為此時沒其他事要做了</li>
+<li>執行 allWord()，印出 a b c</li>
+</ol>
+<p>這時你的程式就會依序印出 a b c 了。</p>
+<p>但看看上面的程式碼，我們光只是寫三層 callback 就很累了，更別說之後萬一需要寫更多層的時候了，這時就會陷入萬劫不復的 callback hell (回呼地獄)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">hell</span>)</span>&#123;</span><br><span class="line">  hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">      hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">          hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">            hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                  hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">                    hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                      hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                        hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                          hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">                            hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                              hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                                hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                                  hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                                    hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                                      hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">                                        hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                                          hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">                                            hell(<span class="string">'no'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                                              hollyshit()</span><br><span class="line">                                            &#125;)</span><br><span class="line">                                          &#125;)</span><br><span class="line">                                        &#125;)</span><br><span class="line">                                      &#125;)</span><br><span class="line">                                    &#125;)</span><br><span class="line">                                  &#125;)</span><br><span class="line">                                &#125;)</span><br><span class="line">                              &#125;)</span><br><span class="line">                            &#125;)</span><br><span class="line">                          &#125;)</span><br><span class="line">                        &#125;)</span><br><span class="line">                      &#125;)</span><br><span class="line">                    &#125;)</span><br><span class="line">                  &#125;)</span><br><span class="line">                &#125;)</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我們用 Promise 來改寫一下上面的程式。</p>
+<p>首先在原本的 logWord 返回一個新建的 Promise，語法為本文最一開始的 <code>new Promise( function(resolve, reject) { … } )</code></p>
+<p>然後把 setTimeout 主程式放入 Promise 裡。為了讓我們的 logWord 可以串連，我們在 setTimeout 主程式最後一行放入 resolve()，讓這個 Promise 物件成功執行時，馬上拋出 resolve。 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logWord</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;  </span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(word)</span><br><span class="line">      resolve()</span><br><span class="line">    &#125;, <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接著我們在 allWord() 裡，用 then 把成功執行的 logWord() 串連起來</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allWord</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  logWord(<span class="string">'a'</span>)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> logWord(<span class="string">'b'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> logWord(<span class="string">'c'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">allWord();</span><br></pre></td></tr></table></figure>
+<p>為了簡潔美觀，我把它改成箭頭函式的寫法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allWord</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  logWord(<span class="string">'a'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> logWord(<span class="string">'b'</span>))</span><br><span class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> logWord(<span class="string">'c'</span>))</span><br><span class="line">&#125;</span><br><span class="line">allWord();</span><br></pre></td></tr></table></figure>
+<p>最後的成果，這樣就可依序印出 a b c</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logWord</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;  </span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(word)</span><br><span class="line">      resolve()</span><br><span class="line">    &#125;, <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allWord</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  logWord(<span class="string">'a'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> logWord(<span class="string">'b'</span>))</span><br><span class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> logWord(<span class="string">'c'</span>))</span><br><span class="line">&#125;</span><br><span class="line">allWord();</span><br></pre></td></tr></table></figure>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>使用 Promise 讓我們可以<span class="red">把非同步操作以同步操作的流程表達出來</span>，它把執行程式和處理結果的程式清晰地分離，同時簡潔的語法，也解決了以前多層 callback function 不好維護的問題。</p>
+<p>對於 Promise 我其實還有很多未整理出來的地方，但希望透過這篇文章讓我對我目前所了解的 Promise 做個梳理，有興趣的朋友也可以參考下面所附連結進而更了解 Promise。</p>
+<p>參考連結:<br><a href="https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview" target="_blank" rel="noopener">React 16 - The Complete Guide</a><br><a href="http://www.books.com.tw/products/0010743987" target="_blank" rel="noopener">你所不知道的JS：ES6與未來發展</a><br><a href="https://www.youtube.com/watch?v=pTbSfCT42_M" target="_blank" rel="noopener">javascript callback functions tutorial</a><br><a href="https://www.youtube.com/watch?v=2d7s3spWAzo" target="_blank" rel="noopener">Promises - Part 8 of Functional Programming in JavaScript</a><br><a href="https://www.youtube.com/watch?v=UGf0fGMxDgE" target="_blank" rel="noopener">[JavaScript 教學] Callback與Promise (非同步編程基礎)</a><br><a href="https://www.youtube.com/watch?v=QVAWqE-R0Ok" target="_blank" rel="noopener">JavaScript Promise 漂亮的串接非同步事件</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">MDN - Promise</a><br><a href="https://legacy.gitbook.com/book/eyesofkids/javascript-start-es6-promise/details" target="_blank" rel="noopener">從Promise開始的JavaScript異步生活</a><br><a href="http://jazzlion.github.io/2016/06/18/Javascript%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E4%B9%8B%E6%97%85-Part-I/" target="_blank" rel="noopener">Javascript的非同步之旅</a><br><a href="https://developers.google.com/web/fundamentals/primers/promises?hl=zh-tw" target="_blank" rel="noopener">JavaScript Promise：簡介</a><br><a href="https://javascript.info/promise-basics" target="_blank" rel="noopener">JAVASCRIPT.INFO - Promise</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://georgekuo.github.io/2018/8/22/promise/" data-id="cjlkn4god0008y8dh4nfa8opk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/george_kuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/georgekuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/8/20/default-parameters/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">預設參數(Default parameters)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/22/promise/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/22/promise/es6-banner-promise.jpg)" alt="Promise" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/22/promise/" class="title">Promise</a></p>
+                            <p class="item-date"><time datetime="2018-08-22T07:13:17.000Z" itemprop="datePublished">2018-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/20/default-parameters/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/20/default-parameters/es6-banner-default-2.jpg)" alt="預設參數(Default parameters)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/20/default-parameters/" class="title">預設參數(Default parameters)</a></p>
+                            <p class="item-date"><time datetime="2018-08-20T05:57:41.000Z" itemprop="datePublished">2018-08-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/20/es6-class/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/20/es6-class/es6-banner-classes.jpg)" alt="類別(Classes)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/20/es6-class/" class="title">類別(Classes)</a></p>
+                            <p class="item-date"><time datetime="2018-08-20T02:05:32.000Z" itemprop="datePublished">2018-08-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/17/spread-rest-operators/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/17/spread-rest-operators/es6-banner-spread.jpg)" alt="分散 / 其餘(Spread/Rest)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/17/spread-rest-operators/" class="title">分散 / 其餘(Spread/Rest)</a></p>
+                            <p class="item-date"><time datetime="2018-08-17T06:10:27.000Z" itemprop="datePublished">2018-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/15/arrow-function/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/15/arrow-function/es6-banner-arrow.jpg)" alt="箭頭函式(Arrow Function)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/15/arrow-function/" class="title">箭頭函式(Arrow Function)</a></p>
+                            <p class="item-date"><time datetime="2018-08-15T06:24:02.000Z" itemprop="datePublished">2018-08-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/arrow-function/">arrow function</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">class</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/const/">const</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/constructor/">constructor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/default-parameters/">default parameters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/destructuring/">destructuring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/export/">export</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/let/">let</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/module/">module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rest/">rest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spread/">spread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/super/">super</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this/">this</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/arrow-function/" style="font-size: 10px;">arrow function</a> <a href="/tags/class/" style="font-size: 10px;">class</a> <a href="/tags/const/" style="font-size: 10px;">const</a> <a href="/tags/constructor/" style="font-size: 10px;">constructor</a> <a href="/tags/default-parameters/" style="font-size: 10px;">default parameters</a> <a href="/tags/destructuring/" style="font-size: 10px;">destructuring</a> <a href="/tags/es6/" style="font-size: 20px;">es6</a> <a href="/tags/export/" style="font-size: 10px;">export</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/let/" style="font-size: 10px;">let</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rest/" style="font-size: 10px;">rest</a> <a href="/tags/spread/" style="font-size: 10px;">spread</a> <a href="/tags/super/" style="font-size: 10px;">super</a> <a href="/tags/this/" style="font-size: 10px;">this</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 George Kuo</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://georgekuo.github.io/2018/8/22/promise/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
