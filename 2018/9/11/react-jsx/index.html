@@ -6,26 +6,26 @@
     
 
     
-    <title>模組(Modules) | Code is not cold.</title>
+    <title>JSX 簡介 | Code is not cold.</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="es6,module,export,import" />
+        <meta name="keywords" content="jsx,react" />
     
-    <meta name="description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
-<meta name="keywords" content="es6,module,export,import">
+    <meta name="description" content="React 以 Component 為基礎，為了增進效率，我們常會在撰寫 React Component 時使用 JSX 的方式來提升程式撰寫效率。 JSX 是一種可以讓 HTML 標記直接寫在 JavaScript 程式碼中的擴充語法，為了它是 React 自創的 React.createElement 的一種簡寫法，需要經過 babel 工具編譯才能執行，可視為是創建元素的語法糖，在使用 Re">
+<meta name="keywords" content="jsx,react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模組(Modules)">
-<meta property="og:url" content="http://georgekuo.github.io/2018/8/13/module/index.html">
+<meta property="og:title" content="JSX 簡介">
+<meta property="og:url" content="http://georgekuo.github.io/2018/9/11/react-jsx/index.html">
 <meta property="og:site_name" content="Code is not cold.">
-<meta property="og:description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
+<meta property="og:description" content="React 以 Component 為基礎，為了增進效率，我們常會在撰寫 React Component 時使用 JSX 的方式來提升程式撰寫效率。 JSX 是一種可以讓 HTML 標記直接寫在 JavaScript 程式碼中的擴充語法，為了它是 React 自創的 React.createElement 的一種簡寫法，需要經過 babel 工具編譯才能執行，可視為是創建元素的語法糖，在使用 Re">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://georgekuo.github.io/2018/8/13/module/es6-banner-module.jpg">
-<meta property="og:updated_time" content="2018-09-02T09:09:26.181Z">
+<meta property="og:image" content="http://georgekuo.github.io/2018/9/11/react-introduce/React-banner-jsx@1x.jpg">
+<meta property="og:updated_time" content="2018-11-06T17:15:00.513Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="模組(Modules)">
-<meta name="twitter:description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
-<meta name="twitter:image" content="http://georgekuo.github.io/2018/8/13/module/es6-banner-module.jpg">
+<meta name="twitter:title" content="JSX 簡介">
+<meta name="twitter:description" content="React 以 Component 為基礎，為了增進效率，我們常會在撰寫 React Component 時使用 JSX 的方式來提升程式撰寫效率。 JSX 是一種可以讓 HTML 標記直接寫在 JavaScript 程式碼中的擴充語法，為了它是 React 自創的 React.createElement 的一種簡寫法，需要經過 babel 工具編譯才能執行，可視為是創建元素的語法糖，在使用 Re">
+<meta name="twitter:image" content="http://georgekuo.github.io/2018/9/11/react-introduce/React-banner-jsx@1x.jpg">
     
 
     
@@ -137,14 +137,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-module" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-react-jsx" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        模組(Modules)
+        JSX 簡介
         </h1>
     
 
@@ -154,8 +154,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2018/8/13/module/" class="article-date">
-            <time datetime="2018-08-13T06:13:31.000Z" itemprop="datePublished">2018-08-13</time>
+        <a href="/2018/9/11/react-jsx/" class="article-date">
+            <time datetime="2018-09-10T16:03:00.000Z" itemprop="datePublished">2018-09-11</time>
         </a>
     </div>
 
@@ -164,39 +164,44 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/es6/">es6</a>, <a class="tag-link" href="/tags/export/">export</a>, <a class="tag-link" href="/tags/import/">import</a>, <a class="tag-link" href="/tags/module/">module</a>
+        <a class="tag-link" href="/tags/jsx/">jsx</a>, <a class="tag-link" href="/tags/react/">react</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Modules 模組系統是 ES6 的新功能，透過 <code>import</code> 與 <code>export</code> 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports</p>
-<h3 id="預設匯出-Default-export"><a href="#預設匯出-Default-export" class="headerlink" title="預設匯出(Default export)"></a>預設匯出(Default export)</h3><p>Default export 的作用是為模組指定預設輸出。舉個例子，假設我們在 human.js 的檔案裡頭，有一個名為 person 的常數，我們用 <code>export</code> 將其輸出，語法為 <code>export default person</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//human.js</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Max'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> person</span><br></pre></td></tr></table></figure><br>接下來我們想要在其他的 js 檔案，例如 app.js 引入 person 這個常數，只要用 <code>import person from ‘./human.js’</code> 即可，<strong><em>person 可換成任意名稱</em></strong>，因為我們已經在 human.js 指定了常數 person 為預設輸出(export default)，所以我們不管在任何地方，從 human.js 引入的預設值都是常數 person。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">import</span> person <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="keyword">import</span> prs <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="keyword">import</span> xyz <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="comment">//import 後面不管任何名稱，都是引入 human.js 的常數 person</span></span><br></pre></td></tr></table></figure>
-<p>簡而言之，這裡記住兩個重點：</p>
-<ul>
-<li>每一支 JS 檔案只能有一個預設匯出(不然就不叫預設值了)</li>
-<li>export 引入的預設匯出，可以任意命名</li>
-</ul>
-<h3 id="具名匯出-Named-exports"><a href="#具名匯出-Named-exports" class="headerlink" title="具名匯出(Named exports)"></a>具名匯出(Named exports)</h3><p>當你的 JS 有兩個以上的變數要匯出時，這時就要用具名匯出(Named exports)，以下是程式碼：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//utility.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> clean = <span class="function"><span class="params">()</span> =&gt;</span> &#123;...&#125; </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> baseData = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Avengers = [<span class="string">'Ironman'</span>, <span class="string">'Hulk'</span>, <span class="string">'Thor'</span>, <span class="string">'Loki'</span>]</span><br><span class="line"><span class="keyword">export</span> &#123; Avengers &#125;</span><br></pre></td></tr></table></figure>
-<p>這是另一種匯出的方式，一般比較推薦此種寫法，因為這樣在 js 最下方輸出，可一眼看出總共輸出了哪些變數。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> clean = <span class="function"><span class="params">()</span> =&gt;</span> &#123;...&#125; </span><br><span class="line"><span class="keyword">const</span> baseData = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Avengers = [<span class="string">'Ironman'</span>, <span class="string">'Hulk'</span>, <span class="string">'Thor'</span>, <span class="string">'Loki'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; clean, baseData, foo, Avengers &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="匯出別名"><a href="#匯出別名" class="headerlink" title="匯出別名"></a>匯出別名</h3><p>一般情況下，export 輸出的變數就是本來的名字，但你也可以使用 <code>as</code> 關鍵字重新命名。我們也可重複重新命名這個動作。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kick_01</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kick_02</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  kick_01 <span class="keyword">as</span> k1,</span><br><span class="line">  kick_02 <span class="keyword">as</span> k2,</span><br><span class="line">  kick_02 <span class="keyword">as</span> kickkkkkkk  <span class="comment">//重複重新命名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h3 id="引入具名匯出須加大括號"><a href="#引入具名匯出須加大括號" class="headerlink" title="引入具名匯出須加大括號"></a>引入具名匯出須加大括號</h3><p>引入具名匯出必須明確指出引入的是哪一個變數，所以名稱必須跟匯出的名稱相同，然後在名稱前後加上花括號 {…}<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; baseData &#125; <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123; clean &#125; <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="匯入別名"><a href="#匯入別名" class="headerlink" title="匯入別名"></a>匯入別名</h3><p>跟匯出別名一樣，你也可以在引入具名匯出後，任意的命名自己想要的名稱，只要使用 as 關鍵字即可</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ironman &#125; <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123; tony <span class="keyword">as</span> ironman &#125;<span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br><span class="line"><span class="comment">//指定一個別名，然後你可以在要導入的文件中自由選擇該別名as關鍵字</span></span><br></pre></td></tr></table></figure>
-<h3 id="同時引入多個輸出"><a href="#同時引入多個輸出" class="headerlink" title="同時引入多個輸出"></a>同時引入多個輸出</h3><p>當檔案中有多個命名輸出，你可使用 <strong>*</strong> 導入所有內容，然後分配別名並進行綁定，在此情況中，它將是一個 object，以便你可使用例如：<code>bundled.baseData</code>, <code>bundled.clean</code> …等方法，即可使用 export 的變數。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> bundled <span class="keyword">from</span> <span class="string">'./utility.js'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="export-與-import-一定要放在頂層範疇"><a href="#export-與-import-一定要放在頂層範疇" class="headerlink" title="export 與 import 一定要放在頂層範疇"></a>export 與 import 一定要放在頂層範疇</h3><p><code>export</code> 與 <code>import</code> 一定得出現在頂層範疇(top-level scope)。舉例來說，你不能將 <code>export</code> 或 <code>import</code> 放在 if 條件式內，它們必須出現在所有區塊與函式之外。</p>
-<p>參考連結:<br><a href="https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview" target="_blank" rel="noopener">React 16 - The Complete Guide</a><br><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="noopener">ECMAScript 6 入门</a><br><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/module_system.html" target="_blank" rel="noopener">從ES6開始的JavaScript學習生活</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/export" target="_blank" rel="noopener">MDN - export</a><br><a href="https://www.jianshu.com/p/edaf43e9384f" target="_blank" rel="noopener">ES6：export default 和 export 区别</a><br><a href="http://www.books.com.tw/products/0010743987" target="_blank" rel="noopener">你所不知道的JS：ES6與未來發展</a><br><a href="http://www.infoq.com/cn/articles/es6-in-depth-modules" target="_blank" rel="noopener">深入浅出ES6（十六）：模块 Modules</a></p>
-
+            <p>React 以 Component 為基礎，為了增進效率，我們常會在撰寫 React Component 時使用 JSX 的方式來提升程式撰寫效率。</p>
+<p>JSX 是一種可以讓 HTML 標記直接寫在 JavaScript 程式碼中的擴充語法，為了它是 React 自創的 React.createElement 的一種簡寫法，需要經過 babel 工具編譯才能執行，可視為是創建元素的語法糖，在使用 React 的时候，JSX 並不是强制要求的,你可以選擇性的使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = &lt;h1&gt;Hello, world!&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<p>上面的 </p><h1>Hello, world!</h1> 乍看之下跟 HTML 並無二異，但這卻是不折不扣的 JSX，因為它跟一般人較為熟悉的 HTML 語法相似也較易維護，這也是為何我們會選擇用 JSX 而不用 React.createElement 的原因。<p></p>
+<p>以下的例子是完全相同的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JSX</span></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;h1 className=<span class="string">"greeting"</span>&gt;</span><br><span class="line">    Hello, world!</span><br><span class="line">  &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ React.createElement</span></span><br><span class="line"><span class="regexp">const element = React.createElement(</span></span><br><span class="line"><span class="regexp">  'h1',</span></span><br><span class="line"><span class="regexp">  &#123;className: 'greeting'&#125;,</span></span><br><span class="line"><span class="regexp">  'Hello, world!'</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<p>Babel 會幫我們把上面 JSX 的程式碼編譯成下面 React.createElement 的程式碼。事實上，React 並沒有強制我們一定要使用 JSX，如果你完全不用 JSX 也是可以的，只是因為 JSX 程式碼閱讀起來較為友善，所以 JSX 成為了撰寫 React 的主流，如果你想更詳細了解 JSX 如何轉譯成 React.createElement，可用 Babel 提供的(轉譯器)[<a href="https://babeljs.io/repl]" target="_blank" rel="noopener">https://babeljs.io/repl]</a> 做測試。</p>
+<p>雖然 JSX 跟 HTML 語法類似，但請記住一件事，JSX 骨子裡還是 JavaScript，以下是 JSX 的一些小眉角。</p>
+<p>###JSX 的花括號<br>花括號可把任意的 JavaScript 表達式嵌入到 JSX 中。例如，2 + 2， user.avatarUrl 和 formatName(user)，這些都是可用的表達式。</p>
+<p>在下面的例子中，我們調用 JavaScript 函數 formatName(user) 的結果嵌入到 </p><h1> 元素中。<p></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatName</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> user.firstName + <span class="string">' '</span> + user.lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  firstName: <span class="string">'Harper'</span>,</span><br><span class="line">  lastName: <span class="string">'Perez'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;h1&gt;</span><br><span class="line">    Hello, &#123;formatName(user)&#125;!</span><br><span class="line">  &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  element,</span></span><br><span class="line"><span class="regexp">  document.getElementById('root')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<p>又或者用花括號嵌入一個 JavaScript 表達式作為屬性值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = &lt;img src=&#123;user.avatarUrl&#125;&gt;&lt;/img&gt;;</span><br></pre></td></tr></table></figure>
+<p>###多行 JSX 需以小括號包覆<br>JSX 分割成多行時，必須使用小括號將 JSX 包裹起來，避免分號自動插入。</p>
+<blockquote>
+<p>正確來說是讓JS認為這行語句尚未結束，而不會作ASI的來結束語句。如果return後面沒有加上圓括號的開頭符號(()，ASI會起作用然後會幫你自動加上分號(;)，這將會造成語法錯誤或是不預期的結果。<br><a href="https://eyesofkids.gitbooks.io/react-basic-zh-tw/content/day06_es6_arrow_func/" target="_blank" rel="noopener">https://eyesofkids.gitbooks.io/react-basic-zh-tw/content/day06_es6_arrow_func/</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Wrong</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Avengers</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;IronMan&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">        &lt;li&gt;Hulk&lt;/</span>li&gt;</span><br><span class="line">        &lt;li&gt;Thor&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">        &lt;li&gt;Caption American&lt;/</span>li&gt;</span><br><span class="line">      &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/Right</span></span><br><span class="line"><span class="regexp">function Avengers()&#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;ul&gt;</span></span><br><span class="line"><span class="regexp">        &lt;li&gt;IronMan&lt;/</span>li&gt;</span><br><span class="line">        &lt;li&gt;Hulk&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">        &lt;li&gt;Thor&lt;/</span>li&gt;</span><br><span class="line">        &lt;li&gt;Caption American&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/u</span>l&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###JSX 的駝峰式寫法<br>React DOM 使用 camelCase 屬性命名約定而不是 HTML 屬性名稱，所以 tabindex 在 JSX中要寫作 tabIndex，class 是 JavaScript 中的保留字，所以 class 屬性用 className 替代。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">'Clementine'</span>;ReactDOM.render(</span><br><span class="line">  &lt;h1 className=<span class="string">"hello"</span>&gt;My name is &#123;name&#125;!&lt;/h1&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>###JSX 註解語法<br>JSX 註解以 {/ 與 /} 包覆欲註解的語句</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UserInfo</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"UserInfo"</span>&gt;</span><br><span class="line">      &#123;<span class="comment">/* &lt;Avatar user=&#123;props.user&#125; /&gt; */</span>&#125;</span><br><span class="line">      &lt;div className=<span class="string">"UserInfo-name"</span>&gt;&#123;props.user.name&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>參考連結:<br><a href="https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview" target="_blank" rel="noopener">React 16 - The Complete Guide</a><br><a href="https://eyesofkids.gitbooks.io/react-basic-zh-tw/content/day18_deeper_jsx/" target="_blank" rel="noopener">React - DOM界的彼方</a><br><a href="http://react.css88.com/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX 介绍</a><br><a href="http://react.css88.com/docs/jsx-in-depth.html" target="_blank" rel="noopener">深入 JSX</a><br><a href="https://blog.techbridge.cc/2016/04/21/react-jsx-introduction/" target="_blank" rel="noopener">一看就懂的 JSX 簡明入門教學指南</a></p>
+</h1>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://georgekuo.github.io/2018/8/13/module/" data-id="cjo5zwapi0005dpdhve6fdb6d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://georgekuo.github.io/2018/9/11/react-jsx/" data-id="cjo5zwapk0007dpdhr5e08d6d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -302,20 +307,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/8/15/arrow-function/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            箭頭函式(Arrow Function)
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2018/8/13/Destructuring/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/8/22/promise/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">解構賦值(Destructuring Assignment)</p>
+        <p class="article-nav-title">Promise</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -522,7 +517,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://georgekuo.github.io/2018/8/13/module/';
+    var disqus_url = 'http://georgekuo.github.io/2018/9/11/react-jsx/';
     
     (function() {
     var dsq = document.createElement('script');
