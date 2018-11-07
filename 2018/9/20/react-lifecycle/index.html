@@ -6,17 +6,26 @@
     
 
     
-    <title>Tag: this | Code is not cold.</title>
+    <title>生命週期(Life Cycle) | Code is not cold.</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Code is not cold.">
-<meta property="og:url" content="http://georgekuo.github.io/tags/this/index.html">
+        <meta name="keywords" content="react,lifecycle" />
+    
+    <meta name="description" content="每一個 React 元件都有自己的生命周期，React 為元件提供了許多生命週期相對應的方法(事件)，讓我們可以在元件發生前、發生後，甚至是被消滅的情況下，可以藉由這些方法來設計一些行為。 元件的生命週期有三個主要的部分：Mountint, Updating 以及 Unmounting，以下以目前最新的 React 16.4 生命週期簡介之。  Mounting：掛載階段，元件正準備要被寫入 DO">
+<meta name="keywords" content="react,lifecycle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生命週期(Life Cycle)">
+<meta property="og:url" content="http://georgekuo.github.io/2018/9/20/react-lifecycle/index.html">
 <meta property="og:site_name" content="Code is not cold.">
+<meta property="og:description" content="每一個 React 元件都有自己的生命周期，React 為元件提供了許多生命週期相對應的方法(事件)，讓我們可以在元件發生前、發生後，甚至是被消滅的情況下，可以藉由這些方法來設計一些行為。 元件的生命週期有三個主要的部分：Mountint, Updating 以及 Unmounting，以下以目前最新的 React 16.4 生命週期簡介之。  Mounting：掛載階段，元件正準備要被寫入 DO">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://georgekuo.github.io/2018/9/12/react-lifecycle/React-banner-lifecycle@1x.jpg">
+<meta property="og:updated_time" content="2018-11-07T04:10:58.589Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code is not cold.">
+<meta name="twitter:title" content="生命週期(Life Cycle)">
+<meta name="twitter:description" content="每一個 React 元件都有自己的生命周期，React 為元件提供了許多生命週期相對應的方法(事件)，讓我們可以在元件發生前、發生後，甚至是被消滅的情況下，可以藉由這些方法來設計一些行為。 元件的生命週期有三個主要的部分：Mountint, Updating 以及 Unmounting，以下以目前最新的 React 16.4 生命週期簡介之。  Mounting：掛載階段，元件正準備要被寫入 DO">
+<meta name="twitter:image" content="http://georgekuo.github.io/2018/9/12/react-lifecycle/React-banner-lifecycle@1x.jpg">
     
 
     
@@ -123,78 +132,162 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>Tag: <em>this</em>
+    uncategorized
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-react-lifecycle" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/8/15/arrow-function/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/8/15/arrow-function/es6-banner-arrow.jpg)" alt="箭頭函式(Arrow Function)" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://georgekuo.github.io/2018/8/15/arrow-function/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-08-15T06:24:02.000Z" itemprop="datePublished">2018-08-15</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/8/15/arrow-function/">箭頭函式(Arrow Function)</a>
+        生命週期(Life Cycle)
         </h1>
     
 
-        <p class="article-excerpt">
-            箭頭函式 Arrow Function 是 ES6 非常受人喜愛的功能，同時支援普通函式所具備的功能，包括預設值、解構、rest 參數，它擁有以下幾個特性：
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/9/20/react-lifecycle/" class="article-date">
+            <time datetime="2018-09-20T09:22:00.000Z" itemprop="datePublished">2018-09-20</time>
+        </a>
+    </div>
 
-更短的函式寫法(怎麼寫)
-綁定 this(怎麼用)
+		
 
-更短的函式寫法先說結論，使用箭頭函式，以下兩種寫法是相等的。123456//normal functionfunction add(x)&#123;  return x + 5&#125
-        </p>
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/lifecycle/">lifecycle</a>, <a class="tag-link" href="/tags/react/">react</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>每一個 React 元件都有自己的生命周期，React 為元件提供了許多生命週期相對應的方法(事件)，讓我們可以在元件發生前、發生後，甚至是被消滅的情況下，可以藉由這些方法來設計一些行為。</p>
+<p>元件的生命週期有三個主要的部分：Mountint, Updating 以及 Unmounting，以下以目前最新的 React 16.4 生命週期簡介之。</p>
+<ul>
+<li><p>Mounting：掛載階段，元件正準備要被寫入 DOM，按以下順序調用這些方法：</p>
+<ul>
+<li>constructor()</li>
+<li>static getDerivedStateFromProps()</li>
+<li>render()</li>
+<li>componentDidMount()<br>(註: React 16 已不建議使用 UNSAFE_componentWillMount())</li>
+</ul>
+</li>
+<li><p>Updating：更新階段，元件偵測到狀態的改變準備重新渲染，按以下順序調用這些方法：</p>
+<ul>
+<li>static getDerivedStateFromProps()</li>
+<li>shouldComponentUpdate()</li>
+<li>render()</li>
+<li>getSnapshotBeforeUpdate()</li>
+<li>componentDidUpdate()<br>(註: React 16 已不建議使用 UNSAFE_componentWillUpdate()與UNSAFE_componentWillReceiveProps())</li>
+</ul>
+</li>
+<li><p>Unmounting：卸載階段，元件正要被從 DOM 中移除，，按以下順序調用這些方法：</p>
+<ul>
+<li>componentWillUnmount()</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/9/12/react-lifecycle/lifecycle16.4.png" alt="React 16.4 生命週期"></p>
+<h3 id="Mounting-掛載階段"><a href="#Mounting-掛載階段" class="headerlink" title="Mounting 掛載階段"></a>Mounting 掛載階段</h3><ul>
+<li><code>constructor()</code>: 這是 ES6 對類別的默認方法，該方法是類別中必須要有的，如果沒有定義 counstructor，則會默認添加空的constructor( )方法。在實現 React.Component 構造函數時，需要先在添加其他內容前，調用 super(props)，用來將父元件傳來的 props 綁定到這個類別中。</li>
+<li><code>static getDerivedStateFromProps()</code>: getDerivedStateFromProps 在組件實例化後，和接受新的 props 與 state 後被調用。每次接收新的 props 之後都會返回一個 object 作為新的 state，或者返回 null 表示新的 props 不需要任何 state 的更新。</li>
+<li><code>render()</code>: render()方法是必需的。當它被調用時，他將計算 this.props 和 this.state，並返回以下其中一種類型: React 物件/陣列和fragments/Portals/字串和數字/布林值或 null。</li>
+<li><code>componentDidMount()</code>: 當元件被寫入 DOM 之後觸發，當初始化需要操作 DOM 元素就可以用這個方法，在此階段通常會用於 DOM 操作、ajax、side effect 以及事件監聽。不能在此做 setState 的操作，以免造成重複渲染。<h3 id="Updating-更新階段"><a href="#Updating-更新階段" class="headerlink" title="Updating 更新階段"></a>Updating 更新階段</h3></li>
+<li><code>shouldComponentUpdate()</code>: 這個函式會回傳一個布林值(默認會回傳 true)，當元件接收到新的 props 或 state 時被觸發。你可以在這個方法裡面去比較 this.props，this.state，nextProps，nextState 來決定是否需要更新，回傳 false 則會跳過此次觸發不更新，如果你什麼都不回傳預設會當做 false。</li>
+<li><code>getSnapshotBeforeUpdate()</code>: 觸發時間是 update 發生時，在 render 之後，以及在元件 DOM 渲染之前，返回的值做為 componentDidUpdate 的第三個參數，這方法可以取代 componentWillUpdate。</li>
+<li><code>componentDidUpdate()</code>: 此函數通常用於進行非同步請求以及事件綁定，在元件完成更新後立即執行。必須注意，componentDidUpdate 在初始化時，以及 shouldComponentUpdate() 返回 false 時，不會被執行。不能在此做 setState 的操作，以免造成重複渲染。<h3 id="Unmounting-卸載階段"><a href="#Unmounting-卸載階段" class="headerlink" title="Unmounting 卸載階段"></a>Unmounting 卸載階段</h3></li>
+<li><code>componentWillUnmount()</code>: 主要用來執行一些必要的清理任務。例如清除 setTimeout 等函數，或者任意的在 componentDidMount 創建的 DOM 元素。<br>參考連結:<br>React 16 - The Complete Guide<br>元件運作與生命週期<br>组件生命周期<br>React 元件生命週期[筆記]<br>React.Component<br>css88 中譯: React.Component</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://georgekuo.github.io/2018/9/20/react-lifecycle/" data-id="cjo6nblt0000ahodhb4qqfchq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
-        </div>
-    
 
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 
-    </div></section>
+    
+    </section>
 
 
 
@@ -224,6 +317,19 @@
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/9/13/react-state/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">狀態 (state)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -425,11 +531,13 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://georgekuo.github.io/2018/9/20/react-lifecycle/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
