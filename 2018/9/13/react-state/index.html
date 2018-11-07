@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>狀態 (state) | Code is not cold.</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="react,state,setState" />
+    
+    <meta name="description" content="狀態(state)和屬性(props)類似，都是一個元件所需要的一些數據資料集合，但是 State 是私有的，它不能被自身元件以外的任何元件使用， React 把元件看成是一個狀態機，如果元件沒有狀態，那就只需要寫成函式元件並透過 props 傳遞資料，不需要寫成類別元件，但如果需要與使用者進行互動，就必須使用 State，先由 State 初始化元件本身的資料，再由 setState 方法改變元">
+<meta name="keywords" content="react,state,setState">
+<meta property="og:type" content="article">
+<meta property="og:title" content="狀態 (state)">
+<meta property="og:url" content="http://georgekuo.github.io/2018/9/13/react-state/index.html">
+<meta property="og:site_name" content="Code is not cold.">
+<meta property="og:description" content="狀態(state)和屬性(props)類似，都是一個元件所需要的一些數據資料集合，但是 State 是私有的，它不能被自身元件以外的任何元件使用， React 把元件看成是一個狀態機，如果元件沒有狀態，那就只需要寫成函式元件並透過 props 傳遞資料，不需要寫成類別元件，但如果需要與使用者進行互動，就必須使用 State，先由 State 初始化元件本身的資料，再由 setState 方法改變元">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://georgekuo.github.io/2018/9/13/react-jsx/React-banner-state@1x.jpg">
+<meta property="og:updated_time" content="2018-11-07T03:49:30.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="狀態 (state)">
+<meta name="twitter:description" content="狀態(state)和屬性(props)類似，都是一個元件所需要的一些數據資料集合，但是 State 是私有的，它不能被自身元件以外的任何元件使用， React 把元件看成是一個狀態機，如果元件沒有狀態，那就只需要寫成函式元件並透過 props 傳遞資料，不需要寫成類別元件，但如果需要與使用者進行互動，就必須使用 State，先由 State 初始化元件本身的資料，再由 setState 方法改變元">
+<meta name="twitter:image" content="http://georgekuo.github.io/2018/9/13/react-jsx/React-banner-state@1x.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-react-state" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        狀態 (state)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/9/13/react-state/" class="article-date">
+            <time datetime="2018-09-13T13:44:00.000Z" itemprop="datePublished">2018-09-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/react/">react</a>, <a class="tag-link" href="/tags/setState/">setState</a>, <a class="tag-link" href="/tags/state/">state</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>狀態(state)和屬性(props)類似，都是一個元件所需要的一些數據資料集合，但是 State 是私有的，它不能被自身元件以外的任何元件使用，</p>
+<p>React 把元件看成是一個狀態機，如果元件沒有狀態，那就只需要寫成函式元件並透過 props 傳遞資料，不需要寫成類別元件，但如果需要與使用者進行互動，就必須使用 State，先由 State 初始化元件本身的資料，再由 setState 方法改變元件的資料，進而渲染改變過後的 DOM 元素。</p>
+<h3 id="無狀態需要改變-函式元件"><a href="#無狀態需要改變-函式元件" class="headerlink" title="無狀態需要改變: 函式元件"></a>無狀態需要改變: 函式元件</h3><p>當我們並不須跟使用者互動時，我們的元件只需寫成函式元件就好，也就是說，我們只要寫一個 function component，並用 props 傳遞資料給子元件即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TheLast</span> (<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span>(</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;I am &#123;props.name&#125; and &#123;props.age&#125; years old.&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">      &lt;h2&gt;My partner is &#123;props.partner&#125;&lt;/</span>h2&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">const element = &lt;TheLast name="Joel" age="55" partner="Ellie" /</span>&gt;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// I am Joel and 55 years old.</span></span><br><span class="line"><span class="comment">// My partner is Ellie</span></span><br></pre></td></tr></table></figure>
+<p>但如果我們想要改變元件的資料，我們就必須寫成類別元件。</p>
+<h3 id="有狀態需要改變-類別元件"><a href="#有狀態需要改變-類別元件" class="headerlink" title="有狀態需要改變: 類別元件"></a>有狀態需要改變: 類別元件</h3><p>上面的函式元件如果我們想要改變姓名(Joel)與年齡(55)，我們就要改成類別元件。</p>
+<p>首先，function TheLast(props) 改成 class TheLast extends React.Component<br>function component 的 state 要寫在 constructor() 裡。<br>state 是個物件，所以狀態的資料必須以物件形式撰寫，例如 this.state = {…}<br>看到了嗎？我們用了 this.state，super()是用來初始化 this 的，可以綁定事件到 this 上。<br>所以我們的 constructor 會變成以下這樣：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>()&#123;</span><br><span class="line">  <span class="keyword">super</span>()</span><br><span class="line">  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">    name: <span class="string">'Joel'</span>,</span><br><span class="line">    age: <span class="number">55</span>,</span><br><span class="line">    partner: <span class="string">'Ellie'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下來就單純多了，在 function component 裡面我們用return顯示 JSX 結構，但是 class component 則用render方法把 return包住，所以整個重新改寫的元件會長這樣：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TheLast</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      name: <span class="string">'Joel'</span>,</span><br><span class="line">      age: <span class="number">55</span>,</span><br><span class="line">      partner: <span class="string">'Ellie'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;I am &#123;<span class="keyword">this</span>.state.name&#125; and &#123;<span class="keyword">this</span>.state.age&#125; years old.&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h2&gt;My partner is &#123;this.state.partner&#125;&lt;/</span>h2&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h3><p>接著我們進入本篇的重點，setState。setState 的工作除了更新 this.state 之外，還要負責觸發重新渲染(re-render)。</p>
+<p>讓我們寫一個能改變 state 的 function 並命名為 switchNameHandler1，裡面用this.setState設置新的 state value，這裡有兩個重點：</p>
+<p>要改變狀態一定要用 this.setState 而非 this.State，後者只用在狀態的初始化。<br>this.setState 是函數，可接受一個 function 或 object 作為參數，在此例我們用 object 做為參數。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setState 語法</span></span><br><span class="line">setState(</span><br><span class="line">  <span class="function"><span class="keyword">function</span> | <span class="title">object</span> <span class="title">nextState</span>,</span></span><br><span class="line">  [function callback]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>在這兒我們想要用 setState 把 Joel 跟 55 換掉，變成 George 跟 20，所以我們把 this.state 想改變的值寫在 this.setState 的 object 裡，於是 switchNameHandler1 就可寫成以下程式碼：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">switchNameHandler1()&#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: <span class="string">'George'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然後在 JSX 裡面插入一個 button，並且安置一個 onClick 事件並用花括號包住 setState 的 function name。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick = &#123;<span class="keyword">this</span>.switchNameHandler1&#125;&gt;Change state&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此時的程式碼會長這樣子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TheLast</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      name: <span class="string">'Joel'</span>,</span><br><span class="line">      age: <span class="number">55</span>,</span><br><span class="line">      partner: <span class="string">'Ellie'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  switchNameHandler1()&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: <span class="string">'George'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;I am &#123;<span class="keyword">this</span>.state.name&#125; and &#123;<span class="keyword">this</span>.state.age&#125; years old.&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h2&gt;My partner is &#123;this.state.partner&#125;&lt;/</span>h2&gt;</span><br><span class="line">        &lt;button onClick = &#123;<span class="keyword">this</span>.switchNameHandler1&#125;&gt;Change state&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;TheLast /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>但你這時會發現按鈕並沒有作用，這是因為我們沒有把 this 綁定在 switchNameHandler1 上，所以必須要在 constructor 裡多加一行:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.switchNameHandler1 = <span class="keyword">this</span>.switchNameHandler1.bind(<span class="keyword">this</span>)</span><br></pre></td></tr></table></figure>
+<p>這時的 button 就有 setState 的功能了。但是我覺得這樣多寫一行很髒，所以我會用 arrow function 綁定 this 的特性，把 switchNameHandler1 用 arrow function 改寫:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">switchNameHandler1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: <span class="string">'George'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整程式碼如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TheLast</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      name: <span class="string">'Joel'</span>,</span><br><span class="line">      age: <span class="number">55</span>,</span><br><span class="line">      partner: <span class="string">'Ellie'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// this.switchNameHandler1 = this.switchNameHandler1.bind(this)</span></span><br><span class="line">  &#125;</span><br><span class="line">  switchNameHandler1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: <span class="string">'George'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;I am &#123;<span class="keyword">this</span>.state.name&#125; and &#123;<span class="keyword">this</span>.state.age&#125; years old.&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h2&gt;My partner is &#123;this.state.partner&#125;&lt;/</span>h2&gt;</span><br><span class="line">        &lt;button onClick = &#123;<span class="keyword">this</span>.switchNameHandler1&#125;&gt;Change state&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;TheLast /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="setState-的其他特性"><a href="#setState-的其他特性" class="headerlink" title="setState 的其他特性"></a>setState 的其他特性</h3><ul>
+<li>this.state 不會在 this.setState 調用之後立刻更新</li>
+<li>連續調用多次 this.setState，都只會觸發一次生命週期的更新</li>
+</ul>
+<p>參考連結:<br><a href="https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/overview" target="_blank" rel="noopener">React 16 - The Complete Guide</a><br><a href="https://juejin.im/entry/59522bdb6fb9a06b9a516113" target="_blank" rel="noopener">深入理解React 组件状态（State）</a><br><a href="https://hk.saowen.com/a/02b4fa9273ffe8e88ef949828f6a550bd8a655661e68d10e3a97d4851ec38eb2" target="_blank" rel="noopener">React 回憶錄（四）React 中的狀態管理</a><br><a href="https://reactjs.org/docs/react-component.html#setstate" target="_blank" rel="noopener">React.Component</a><br><a href="http://react.css88.com/docs/state-and-lifecycle.html" target="_blank" rel="noopener">状态(State) 和 生命周期</a><br><a href="https://www.youtube.com/watch?v=DJtI3Pogd88&amp;index=4&amp;list=PL7pEw9n3GkoWkHCQsfBh77UP4nc8lvTbS" target="_blank" rel="noopener">React JS State and Props</a><br><a href="https://zhuanlan.zhihu.com/p/25954470" target="_blank" rel="noopener">setState：这个API设计到底怎么样</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://georgekuo.github.io/2018/9/13/react-state/" data-id="cjo6mk40u000f7rdhb97m08h4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/george_kuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/georgekuo" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/7/react-state-1/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            react-state
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/9/12/react-props/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">元件 (Component) 與屬性 (Props)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/7/react-state-1/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/7/react-state-1/" class="title">react-state</a></p>
+                            <p class="item-date"><time datetime="2018-11-07T03:49:35.000Z" itemprop="datePublished">2018-11-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/9/13/react-state/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/9/13/react-jsx/React-banner-state@1x.jpg)" alt="狀態 (state)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/9/13/react-state/" class="title">狀態 (state)</a></p>
+                            <p class="item-date"><time datetime="2018-09-13T13:44:00.000Z" itemprop="datePublished">2018-09-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/9/12/react-props/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/9/12/react-jsx/React-banner-props@1x.jpg)" alt="元件 (Component) 與屬性 (Props)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/9/12/react-props/" class="title">元件 (Component) 與屬性 (Props)</a></p>
+                            <p class="item-date"><time datetime="2018-09-12T00:03:00.000Z" itemprop="datePublished">2018-09-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/9/11/react-jsx/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/9/11/react-jsx/React-banner-jsx@1x.jpg)" alt="JSX 簡介" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/9/11/react-jsx/" class="title">JSX 簡介</a></p>
+                            <p class="item-date"><time datetime="2018-09-10T16:03:00.000Z" itemprop="datePublished">2018-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/8/22/promise/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/8/22/promise/es6-banner-promise.jpg)" alt="Promise" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/8/22/promise/" class="title">Promise</a></p>
+                            <p class="item-date"><time datetime="2018-08-22T07:13:17.000Z" itemprop="datePublished">2018-08-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/arrow-function/">arrow function</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/class/">class</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/const/">const</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/constructor/">constructor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/default-parameters/">default parameters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/destructuring/">destructuring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/export/">export</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsx/">jsx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/let/">let</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/module/">module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/props/">props</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rest/">rest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setState/">setState</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spread/">spread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/state/">state</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/super/">super</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this/">this</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/arrow-function/" style="font-size: 10px;">arrow function</a> <a href="/tags/class/" style="font-size: 10px;">class</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/const/" style="font-size: 10px;">const</a> <a href="/tags/constructor/" style="font-size: 10px;">constructor</a> <a href="/tags/default-parameters/" style="font-size: 10px;">default parameters</a> <a href="/tags/destructuring/" style="font-size: 10px;">destructuring</a> <a href="/tags/es6/" style="font-size: 20px;">es6</a> <a href="/tags/export/" style="font-size: 10px;">export</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/jsx/" style="font-size: 10px;">jsx</a> <a href="/tags/let/" style="font-size: 10px;">let</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/props/" style="font-size: 10px;">props</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/rest/" style="font-size: 10px;">rest</a> <a href="/tags/setState/" style="font-size: 10px;">setState</a> <a href="/tags/spread/" style="font-size: 10px;">spread</a> <a href="/tags/state/" style="font-size: 10px;">state</a> <a href="/tags/super/" style="font-size: 10px;">super</a> <a href="/tags/this/" style="font-size: 10px;">this</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 George Kuo</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://georgekuo.github.io/2018/9/13/react-state/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
