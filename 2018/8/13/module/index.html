@@ -21,7 +21,7 @@
 <meta property="og:description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://georgekuo.github.io/2018/8/13/module/es6-banner-module.jpg">
-<meta property="og:updated_time" content="2018-09-02T09:09:26.181Z">
+<meta property="og:updated_time" content="2018-11-15T15:42:46.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模組(Modules)">
 <meta name="twitter:description" content="Modules 模組系統是 ES6 的新功能，透過 import 與 export 關鍵字，你可將以往冗長且結構複雜的程式碼拆解成各個小區塊，以便我們可以把A檔案的程式碼導入到B檔案使用。Exports 有兩種輸出方式，分別是 Default export 與 Named exports 預設匯出(Default export)Default export 的作用是為模組指定預設輸出。舉個例子，假">
@@ -176,7 +176,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">import</span> person <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="keyword">import</span> prs <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="keyword">import</span> xyz <span class="keyword">from</span> <span class="string">'./human.js'</span></span><br><span class="line"><span class="comment">//import 後面不管任何名稱，都是引入 human.js 的常數 person</span></span><br></pre></td></tr></table></figure>
 <p>簡而言之，這裡記住兩個重點：</p>
 <ul>
-<li>每一支 JS 檔案只能有一個預設匯出(不然就不叫預設值了)</li>
+<li>每一支 JS 檔案只能有一個預設匯出</li>
 <li>export 引入的預設匯出，可以任意命名</li>
 </ul>
 <h3 id="具名匯出-Named-exports"><a href="#具名匯出-Named-exports" class="headerlink" title="具名匯出(Named exports)"></a>具名匯出(Named exports)</h3><p>當你的 JS 有兩個以上的變數要匯出時，這時就要用具名匯出(Named exports)，以下是程式碼：</p>
