@@ -21,7 +21,7 @@
 <meta property="og:description" content="在 ES6 以前，想要簡化相同程式碼，必須用 prototype 原型來達到類與類繼承，ES6 引入了類別(Class)作為 JavaScript 現有原型程式(prototype-based)的語法糖，提供了一個更簡潔的語法來建立物件與處理繼承。 類別(Classes)實際上是一種特別的函數，就跟你可以定義函數敘述和函數宣告一樣。透過 Class 建立物件，將兩個或多個物件的相同結構抽取出來變成">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://georgekuo.github.io/2018/8/20/es6-class/es6-banner-classes.jpg">
-<meta property="og:updated_time" content="2018-09-02T09:09:26.179Z">
+<meta property="og:updated_time" content="2018-11-15T17:19:55.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="類別(Classes)">
 <meta name="twitter:description" content="在 ES6 以前，想要簡化相同程式碼，必須用 prototype 原型來達到類與類繼承，ES6 引入了類別(Class)作為 JavaScript 現有原型程式(prototype-based)的語法糖，提供了一個更簡潔的語法來建立物件與處理繼承。 類別(Classes)實際上是一種特別的函數，就跟你可以定義函數敘述和函數宣告一樣。透過 Class 建立物件，將兩個或多個物件的相同結構抽取出來變成">
@@ -173,7 +173,7 @@
         <div class="article-entry" itemprop="articleBody">
             <p>在 ES6 以前，想要簡化相同程式碼，必須用 prototype 原型來達到類與類繼承，ES6 引入了類別(Class)作為 JavaScript 現有原型程式(prototype-based)的語法糖，提供了一個更簡潔的語法來建立物件與處理繼承。</p>
 <p>類別(Classes)實際上是一種特別的函數，就跟你可以定義函數敘述和函數宣告一樣。透過 Class 建立物件，將兩個或多個物件的相同結構抽取出來變成一個模板，再依照模版複製出其他相似物件，這使我們不必再寫重複的程式碼。</p>
-<p>要建立一個新的類別，必須用關鍵字<code>Class</code>，如下所示，我們建立一個名為 Person 的類別，在此類別可為它建立屬性與方法。</p>
+<p>要建立一個新的類別，必須用關鍵字<code>class</code>，如下所示，我們建立一個名為 Person 的類別，在此類別可為它建立屬性與方法。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;      <span class="comment">//注意 class 為小寫，Person 首字大寫</span></span><br><span class="line">  name: <span class="string">'George'</span>    <span class="comment">//建立 name 屬性</span></span><br><span class="line">  call: = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;  <span class="comment">//建立 call 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>現在我們來改寫一下上面的程式碼，我們加入 class 另一個功能<code>constructor</code>，它代表類別的主體內容，<strong>一個類別只能有一個 constructor</strong>，當類別中含有一個以上的建構子方法時，SyntaxError 將會被拋出。在這裡我們把 name 屬性放進 constructor 裡，然後加上 printMyName 方法。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'George'</span></span><br><span class="line">  &#125;           </span><br><span class="line">  printMyName()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
