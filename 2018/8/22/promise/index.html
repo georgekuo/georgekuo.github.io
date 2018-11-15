@@ -21,7 +21,7 @@
 <meta property="og:description" content="JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。 甚麼是 Prom">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://georgekuo.github.io/2018/8/22/promise/es6-banner-promise.jpg">
-<meta property="og:updated_time" content="2018-09-02T09:09:26.182Z">
+<meta property="og:updated_time" content="2018-11-15T17:33:58.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise">
 <meta name="twitter:description" content="JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。 甚麼是 Prom">
@@ -183,10 +183,10 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">successed, failed</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  successed(value)  <span class="comment">// 成功便執行 successed 的 value 值</span></span><br><span class="line">  failed(reason)    <span class="comment">// 失敗便執行 failed 的 reason 值</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="第二個-reject-函式不一定要放"><a href="#第二個-reject-函式不一定要放" class="headerlink" title="第二個 reject 函式不一定要放"></a>第二個 reject 函式不一定要放</h3><p>resolve 或 reject 函式不必兩個都放，如果你確定你的 Promise 裡面的程式一定會執行成功，可以只放第一個 callback function，也就是 resolve。如果你的 Promise 可能有失敗結果，就不能偷懶，一定要放兩個 callback function，第一個 callback function 是成功時執行，第二個 callback function 是失敗時執行。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">reject</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  reject(value)  <span class="comment">// 成功便執行 reject 的 value 值</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>上面有個小小的陷阱，在 executor 裡面我放了一個叫 reject 的 callback function，雖然它叫 reject，但它其實是<strong>成功時才會執行</strong>，因為這裡綜合了以上所提到的兩個特性：</p>
+<p>上面有個小小的陷阱，在 executor 裡面我只放了一個叫 reject 的 callback function，雖然它叫 reject，但它其實是 Promise <strong>成功時才會執行的 callback function</strong>，因為這裡綜合了以上所提到的兩個特性：</p>
 <ul>
 <li>resolve 與 reject 可任意命名</li>
-<li>第二個 reject 函式不一定要放</li>
+<li>第二個 reject 函式可放可不放</li>
 </ul>
 <p>因為 executor 裡面只有一個 callback functoin，所以它其實代表的是 Promise 成功時才會執行的接口，也就是一般所認知的 resolve 函式。</p>
 <h4 id="then"><a href="#then" class="headerlink" title="then()"></a>then()</h4><p><code>then()</code>方法回傳一個 Promise 物件。它接收兩個引數： Promise 在成功及失敗情況時的 callback function。</p>
