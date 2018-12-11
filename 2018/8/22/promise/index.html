@@ -21,7 +21,7 @@
 <meta property="og:description" content="JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。 甚麼是 Prom">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://georgekuo.github.io/2018/8/22/promise/es6-banner-promise.jpg">
-<meta property="og:updated_time" content="2018-11-15T17:33:58.536Z">
+<meta property="og:updated_time" content="2018-12-11T15:57:47.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise">
 <meta name="twitter:description" content="JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。 甚麼是 Prom">
@@ -172,8 +172,7 @@
         
         <div class="article-entry" itemprop="articleBody">
             <p>JavaScript 有些程式是非同步的(例如 ajax, setTimeout, setInterval)，為了確保這些非同步程式能照我們想要的順序執行，我們使用了回呼函式 (以下稱 callback function) 來達成我們的需求，但 callback function 有個問題是只要程序一多，程式碼會變得非常難以閱讀，於是 ES6 提出了一個解決方案：Promise。</p>
-<p>甚麼是 Promise? </p>
-<p>首先要知道，<strong>Promise 是一個物件(object)</strong>，它代表一個即將完成、或失敗的非同步操作，以及它所產生的值。一個 Promise 物件透過 new 及其建構式建立。這個建構式接收一個叫作”執行器函式（executor function）”的引數。此函式裡面有兩個 callback function 作為引數，分別是 <strong>resolve</strong> 與 <strong>reject</strong>。</p>
+<h4 id="甚麼是-Promise"><a href="#甚麼是-Promise" class="headerlink" title="甚麼是 Promise?"></a>甚麼是 Promise?</h4><p>首先要知道，<strong>Promise 是一個物件(object)</strong>，它代表一個即將完成、或失敗的非同步操作，以及它所產生的值。一個 Promise 物件透過 new 及其建構式建立。這個建構式接收一個叫作”執行器函式（executor function）”的引數。此函式裡面有兩個 callback function 作為引數，分別是 <strong>resolve</strong> 與 <strong>reject</strong>。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="comment">/* executor */</span> <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; ... &#125; );</span><br></pre></td></tr></table></figure>
 <h4 id="resolve-與-reject-函數的作用"><a href="#resolve-與-reject-函數的作用" class="headerlink" title="resolve 與 reject 函數的作用"></a>resolve 與 reject 函數的作用</h4><p>任何一個 Promise 物件在剛被建立時，一定都是處於 pending 狀態，只有執行完裡面的非同步程式後，才能確認該 Promise 是成功或失敗。</p>
 <p>如果該 Promise 的非同步程式<strong>成功</strong>完成時，將會執行第一個函式 resolve 之結果值，相對的，若非同步程式<strong>失敗</strong>時，Promise 將會執行第二個函式 reject 之結果值。簡單的說，即是把這兩個 callback function 當作該 Promise 成功或失敗的接口。</p>
