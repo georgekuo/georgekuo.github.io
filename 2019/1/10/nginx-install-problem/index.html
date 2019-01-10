@@ -6,17 +6,26 @@
     
 
     
-    <title>Tag: class | Code is not cold.</title>
+    <title>Nginx 安裝失敗經驗＆解決方法 | Code is not cold.</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Code is not cold.">
-<meta property="og:url" content="http://georgekuo.github.io/tags/class/index.html">
+        <meta name="keywords" content="nginx" />
+    
+    <meta name="description" content="今天照著前輩這篇安裝 nginx on Mac安裝 nginx 時，本來以為brew install nginx一鍵下去即可高枕無憂，沒想到終端機畫面顯示以下錯誤訊息12345678/usr/local/Homebrew/Library/Homebrew/config.rb:39:in `initialize&amp;apos;: no implicit conversion of nil into St">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx 安裝失敗經驗＆解決方法">
+<meta property="og:url" content="http://georgekuo.github.io/2019/1/10/nginx-install-problem/index.html">
 <meta property="og:site_name" content="Code is not cold.">
+<meta property="og:description" content="今天照著前輩這篇安裝 nginx on Mac安裝 nginx 時，本來以為brew install nginx一鍵下去即可高枕無憂，沒想到終端機畫面顯示以下錯誤訊息12345678/usr/local/Homebrew/Library/Homebrew/config.rb:39:in `initialize&amp;apos;: no implicit conversion of nil into St">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://georgekuo.github.io/2019/1/10/nginx-install-problem/Nginx@1x.jpg">
+<meta property="og:updated_time" content="2019-01-10T17:30:24.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code is not cold.">
+<meta name="twitter:title" content="Nginx 安裝失敗經驗＆解決方法">
+<meta name="twitter:description" content="今天照著前輩這篇安裝 nginx on Mac安裝 nginx 時，本來以為brew install nginx一鍵下去即可高枕無憂，沒想到終端機畫面顯示以下錯誤訊息12345678/usr/local/Homebrew/Library/Homebrew/config.rb:39:in `initialize&amp;apos;: no implicit conversion of nil into St">
+<meta name="twitter:image" content="http://georgekuo.github.io/2019/1/10/nginx-install-problem/Nginx@1x.jpg">
     
 
     
@@ -123,74 +132,133 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>Tag: <em>class</em>
+    uncategorized
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-nginx-install-problem" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/8/20/es6-class/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/8/20/es6-class/es6-banner-classes.jpg)" alt="類別(Classes)" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://georgekuo.github.io/2018/8/20/es6-class/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-08-20T02:05:32.000Z" itemprop="datePublished">2018-08-20</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/8/20/es6-class/">類別(Classes)</a>
+        Nginx 安裝失敗經驗＆解決方法
         </h1>
     
 
-        <p class="article-excerpt">
-            在 ES6 以前，想要簡化相同程式碼，必須用 prototype 原型來達到類與類繼承，ES6 引入了類別(Class)作為 JavaScript 現有原型程式(prototype-based)的語法糖，提供了一個更簡潔的語法來建立物件與處理繼承。
-類別(Classes)實際上是一種特別的函數，就跟你可以定義函數敘述和函數宣告一樣。透過 Class 建立物件，將兩個或多個物件的相同結構抽取出來變成
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/1/10/nginx-install-problem/" class="article-date">
+            <time datetime="2019-01-09T17:41:27.000Z" itemprop="datePublished">2019-01-10</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/nginx/">nginx</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>今天照著前輩這篇<a href="https://medium.com/tool-s/%E5%AE%89%E8%A3%9D-nginx-on-mac-eb739295e153" target="_blank" rel="noopener">安裝 nginx on Mac</a>安裝 nginx 時，本來以為<code>brew install nginx</code>一鍵下去即可高枕無憂，沒想到終端機畫面顯示以下錯誤訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/Homebrew/Library/Homebrew/config.rb:39:in `initialize&apos;: no implicit conversion of nil into String (TypeError)</span><br><span class="line">from /usr/local/Homebrew/Library/Homebrew/config.rb:39:in `new&apos;</span><br><span class="line">from /usr/local/Homebrew/Library/Homebrew/config.rb:39:in `&lt;top (required)&gt;&apos;</span><br><span class="line">from /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require&apos;</span><br><span class="line">from /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require&apos;</span><br><span class="line">from /usr/local/Homebrew/Library/Homebrew/global.rb:25:in `&lt;top (required)&gt;&apos;</span><br><span class="line">from /usr/local/Homebrew/Library/Homebrew/brew.rb:13:in `require_relative&apos;</span><br><span class="line">from /usr/local/Homebrew/Library/Homebrew/brew.rb:13:in `&lt;main&gt;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>不信邪的我再跑一次<code>brew install nginx</code>，這次換以下錯誤訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: No such file or directory @ dir_chdir - /usr/local/Cellar</span><br></pre></td></tr></table></figure></p>
+<p>看來應該是少了 Cellar 資料夾。由於訊息明確，於是把以上那一行拿去 google，看到<a href="https://github.com/Homebrew/legacy-homebrew/issues/12870" target="_blank" rel="noopener">這一篇</a>，第一則回覆寫著 <strong>You should run brew update then brew doctor before you install anything.</strong></p>
+<p>於是照著他的話做，先<code>brew update</code>更新 brew 的版本，然後<code>brew doctor</code>檢測，又出現了以下訊息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Warning: The following directories do not exist:</span><br><span class="line">/usr/local/opt</span><br><span class="line">/usr/local/sbin</span><br><span class="line">/usr/local/Cellar</span><br><span class="line"></span><br><span class="line">You should create these directories and change their ownership to your account.</span><br><span class="line">sudo mkdir -p /usr/local/opt /usr/local/sbin /usr/local/Cellar</span><br><span class="line">sudo chown -R $(whoami) /usr/local/opt /usr/local/sbin /usr/local/Cellar</span><br><span class="line">(...中間一堆無意義資料夾名直接跳過)</span><br><span class="line">Warning: Broken symlinks were found. Remove them with `brew cleanup`:</span><br><span class="line">/usr/local/share/man/man3/*</span><br></pre></td></tr></table></figure></p>
+<p>我先<code>brew cleanup</code>清除舊版本的緩存，然後再建立 Cellar 資料夾並指定權限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /usr/local/opt /usr/local/sbin /usr/local/Cellar</span><br><span class="line">sudo chown -R $(whoami) /usr/local/opt /usr/local/sbin /usr/local/Cellar</span><br></pre></td></tr></table></figure>
+<p>接著終於可以安枕無憂的一鍵搞定<code>brew install nginx</code>了…(淚)</p>
+<p>參考連結:<br><a href="https://medium.com/tool-s/%E5%AE%89%E8%A3%9D-nginx-on-mac-eb739295e153" target="_blank" rel="noopener">安裝 nginx on Mac</a><br><a href="https://github.com/Homebrew/legacy-homebrew/issues/12870" target="_blank" rel="noopener">brew doctor – &gt;&gt; Error: No such file or directory - /usr/local/Cellar</a><br><a href="http://pre.tir.tw/008/blog/output/mac-homebrew-tao-jian-guan-li-chang-yong-zhi-ling.html" target="_blank" rel="noopener">Mac - homebrew 套件管理 常用指令</a><br><a href="http://wiki.jikexueyuan.com/project/mac-dev-setup/homebrew.html" target="_blank" rel="noopener">Homebrew</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://georgekuo.github.io/2019/1/10/nginx-install-problem/" data-id="cjqqv7a1q0000rtdhdf2ukdfi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
-        </div>
-    
 
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 
-    </div></section>
+    
+    </section>
 
 
 
@@ -220,6 +288,19 @@
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/9/20/react-lifecycle/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">生命週期(Life Cycle)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -421,11 +502,13 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://georgekuo.github.io/2019/1/10/nginx-install-problem/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
