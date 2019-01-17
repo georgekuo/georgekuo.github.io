@@ -21,7 +21,7 @@
 <meta property="og:description" content="每一個 React 元件都有自己的生命周期，React 為元件提供了許多生命週期相對應的方法(事件)，讓我們可以在元件發生前、發生後，甚至是被消滅的情況下，可以藉由這些方法來設計一些行為。 元件的生命週期有三個主要的部分：Mountint, Updating 以及 Unmounting，以下以目前最新的 React 16.4 生命週期簡介之。  Mounting：掛載階段，元件正準備要被寫入 DO">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://georgekuo.github.io/2018/9/20/react-lifecycle/React-banner-lifecycle@1x.jpg">
-<meta property="og:updated_time" content="2018-11-07T04:15:52.473Z">
+<meta property="og:updated_time" content="2019-01-17T15:56:11.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生命週期(Life Cycle)">
 <meta name="twitter:description" content="每一個 React 元件都有自己的生命周期，React 為元件提供了許多生命週期相對應的方法(事件)，讓我們可以在元件發生前、發生後，甚至是被消滅的情況下，可以藉由這些方法來設計一些行為。 元件的生命週期有三個主要的部分：Mountint, Updating 以及 Unmounting，以下以目前最新的 React 16.4 生命週期簡介之。  Mounting：掛載階段，元件正準備要被寫入 DO">
@@ -188,7 +188,7 @@
 <li>shouldComponentUpdate()</li>
 <li>render()</li>
 <li>getSnapshotBeforeUpdate()</li>
-<li>componentDidUpdate()<br>(註: React 16 已不建議使用 UNSAFE_componentWillUpdate()與UNSAFE_componentWillReceiveProps())</li>
+<li>componentDidUpdate()<br>(註: React 16 已不建議使用 UNSAFE_componentWillUpdate() 與 UNSAFE_componentWillReceiveProps())</li>
 </ul>
 </li>
 <li><p>Unmounting：卸載階段，元件正要被從 DOM 中移除，，按以下順序調用這些方法：</p>
@@ -203,7 +203,7 @@
 <li><code>static getDerivedStateFromProps()</code>: getDerivedStateFromProps 在組件實例化後，和接受新的 props 與 state 後被調用。每次接收新的 props 之後都會返回一個 object 作為新的 state，或者返回 null 表示新的 props 不需要任何 state 的更新。</li>
 <li><code>render()</code>: render()方法是必需的。當它被調用時，他將計算 this.props 和 this.state，並返回以下其中一種類型: React 物件/陣列和fragments/Portals/字串和數字/布林值或 null。</li>
 <li><code>componentDidMount()</code>: 當元件被寫入 DOM 之後觸發，當初始化需要操作 DOM 元素就可以用這個方法，在此階段通常會用於 DOM 操作、ajax、side effect 以及事件監聽。不能在此做 setState 的操作，以免造成重複渲染。<h3 id="Updating-更新階段"><a href="#Updating-更新階段" class="headerlink" title="Updating 更新階段"></a>Updating 更新階段</h3></li>
-<li><code>shouldComponentUpdate()</code>: 這個函式會回傳一個布林值(默認會回傳 true)，當元件接收到新的 props 或 state 時被觸發。你可以在這個方法裡面去比較 this.props，this.state，nextProps，nextState 來決定是否需要更新，回傳 false 則會跳過此次觸發不更新，如果你什麼都不回傳預設會當做 false。</li>
+<li><code>shouldComponentUpdate()</code>: 這個函式會回傳一個布林值(默認會回傳 true)，當元件接收到新的 props 或 state 時被觸發，在元件初始化時(mounting)或者使用 forceUpdate 時不會被執行。<br>你可以在這個方法裡面去比較 this.props，this.state，nextProps，nextState 來決定是否需要更新，回傳 false 則會跳過此次觸發不更新，如果你什麼都不回傳預設會當做 false。</li>
 <li><code>getSnapshotBeforeUpdate()</code>: 觸發時間是 update 發生時，在 render 之後，以及在元件 DOM 渲染之前，返回的值做為 componentDidUpdate 的第三個參數，這方法可以取代 componentWillUpdate。</li>
 <li><code>componentDidUpdate()</code>: 此函數通常用於進行非同步請求以及事件綁定，在元件完成更新後立即執行。必須注意，componentDidUpdate 在初始化時，以及 shouldComponentUpdate() 返回 false 時，不會被執行。不能在此做 setState 的操作，以免造成重複渲染。<h3 id="Unmounting-卸載階段"><a href="#Unmounting-卸載階段" class="headerlink" title="Unmounting 卸載階段"></a>Unmounting 卸載階段</h3></li>
 <li><code>componentWillUnmount()</code>: 主要用來執行一些必要的清理任務。例如清除 setTimeout 等函數，或者任意的在 componentDidMount 創建的 DOM 元素。</li>
