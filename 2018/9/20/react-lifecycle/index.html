@@ -198,6 +198,7 @@
 </li>
 </ul>
 <p><img src="/2018/9/20/react-lifecycle/lifecycle16.4.png" alt="React 16.4 生命週期"></p>
+<p>上圖來源：<a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank">http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram</a></p>
 <h3 id="Mounting-掛載階段"><a href="#Mounting-掛載階段" class="headerlink" title="Mounting 掛載階段"></a>Mounting 掛載階段</h3><ul>
 <li><code>constructor()</code>: 這是 ES6 對類別的默認方法，該方法是類別中必須要有的，如果沒有定義 counstructor，則會默認添加空的constructor( )方法。在實現 React.Component 構造函數時，需要先在添加其他內容前，調用 super(props)，用來將父元件傳來的 props 綁定到這個類別中。</li>
 <li><code>static getDerivedStateFromProps()</code>: getDerivedStateFromProps 在組件實例化後，和接受新的 props 與 state 後被調用。每次接收新的 props 之後都會返回一個 object 作為新的 state，或者返回 null 表示新的 props 不需要任何 state 的更新。</li>
